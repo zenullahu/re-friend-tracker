@@ -161,7 +161,41 @@
                         "name": "Ok"
                     }
                 ]
-            }
+            },
+            {
+  "id": "ActivityForm",
+  "title": "Activity",
+  "url": "/activity",
+  "formFieldList": [
+    {
+      "id": "name",
+      "type": "text",
+      "name": "ActivityName",
+      "width": 2,
+      "required": true
+    },
+    {
+      "id": "location",
+      "type": "autocomplete",
+      "name": "Location",
+      "url": "/location",
+      "form": "LocationForm",
+      "width": 2
+    },
+    {
+      "type": "deleteButton",
+      "name": "Delete"
+    },
+    {
+      "type": "cancelButton",
+      "name": "Cancel"
+    },
+    {
+      "type": "okButton",
+      "name": "Ok"
+    }
+  ]
+}
         ],
         "pageList": [
             {
@@ -219,12 +253,43 @@
                         "color": "blue",
                         "search": true,
                         "url": "/friend",
-                        "form": {
-                            "form": "FriendForm"
-                        }
+                        "page": "frienddetailpage"
                     }
                 ]
             },
+            {
+  "id": "frienddetailpage",
+  "elementList": [
+    {
+      "type": "backbutton"
+    },
+    {
+      "type": "form",
+      "form": {
+        "form": "FriendForm"
+      }
+    },
+    {
+      "type": "newButton",
+      "name": "AddActivity",
+      "icon": "fa-futbol",
+      "color": "green",
+      "form": {
+        "form": "AddActivityForm"
+      }
+    },
+    {
+      "type": "list",
+      "icon": "fa-futbol",
+      "color": "red",
+      "search": true,
+      "url": "/friend/:friendKey/activity",
+      "form": {
+        "form": "ActivityForm"
+      }
+    }
+  ]
+}, 
             {
                 "id": "locationspage",
                 "elementList": [
@@ -295,18 +360,41 @@
                             "form": "AddActivityForm"
                         }
                     }, 
-                    {
-                        "type": "list",
-                        "icon": "fa-weixin",
-                        "color": "wisteria",
-                        "search": true,
-                        "url": "/activity",
-                        "form": {
-                            "form": "AddActivityForm"
-                        }
-                    }
+{
+  "type": "list",
+  "icon": "fa-weixin",
+  "color": "wisteria",
+  "search": true,
+  "url": "/activity",
+  "page": "activitydetailpage"
+}
                 ]
-            }
+            }, 
+            {
+  "id": "activitydetailpage",
+  "elementList": [
+    {
+      "type": "backbutton"
+    },
+    {
+      "type": "form",
+      "form": {
+        "form": "ActivityForm"
+      }
+    },
+    {
+      "type": "list",
+      "icon": "fa-user",
+      "color": "blue",
+      "search": true,
+      "url": "/activity/:activityKey/friend",
+      "form": {
+        "form": "FriendForm"
+      }
+    }
+  ]
+}
+
         ]
     }
 }
